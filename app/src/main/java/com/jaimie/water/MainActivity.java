@@ -66,12 +66,13 @@ public class MainActivity extends AppCompatActivity {
                 cost = degree* 12.075f - 110.5f;
             }
 //            new AlertDialog.Builder(this)
-//                    .setTitle("每月抄表費用")
-//                    .setMessage("費用" + cost)
+//                    .setTitle("month")
+//                    .setMessage("fee" + cost)
 //                    .setPositiveButton("OK", null)
 //                    .show();
 
             Intent intent = new Intent(this, ResultActivity.class);
+            intent.putExtra("COST", cost);
             startActivity(intent);
         } else {
             String nextString = edNextMonthly.getText().toString();
