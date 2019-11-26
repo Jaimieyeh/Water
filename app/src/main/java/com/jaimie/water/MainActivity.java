@@ -15,11 +15,15 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private EditText edMonthly;
     private EditText edNextMonthly;
+    boolean isNext = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         edMonthly = findViewById(R.id.month);
-        edNextMonthly = findViewById(R.id.next);
+     //   edNextMonthly = findViewById(R.id.next);
+
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +54,17 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        Switch sw = findViewById(R.id.sw);
+        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                isNext = isChecked;
+                TextView text = findViewById(R.id.type);
+                text.setText(isNext ? getString(R.string.every_other_month) : getString(R.string.monthly));
+            }
+        });
+
     }
 
     public void test (){
@@ -72,9 +88,11 @@ public class MainActivity extends AppCompatActivity {
 //                    .show();
 
             Intent intent = new Intent(this, ResultActivity.class);
-            intent.putExtra("COST", cost);
+            intent.putExtra(getString(R.string.extra_cost), cost);
             startActivity(intent);
-        } else {
+        }
+
+        /*else {
             String nextString = edNextMonthly.getText().toString();
             if (!TextUtils.isEmpty(nextString)){
                 float degree = Float.parseFloat(monthString);
@@ -95,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
 //                        .show();
             }
 
-        }
+        }*/
     }
 
     @Override

@@ -4,4 +4,6 @@
     <string name="water_fee">WATER FEE</string>
     <string name="every_other_month">Every other month</string>
     <string name="monthly">Monthly</string>
+    <string name="extra_cost">COST</string>
+    <string name="go">GO</string>
 </resources>
